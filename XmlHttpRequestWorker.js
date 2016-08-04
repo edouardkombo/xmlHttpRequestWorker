@@ -41,10 +41,23 @@ XmlHttpRequestWorker.prototype = {
 
             var xhr = new XMLHttpRequest();
             xhr.open(e.data.method, e.data.url, true);
-            xhr.setRequestHeader('Accept', e.data.requestHeader);
+
+            //If headers parameters are requested
+            if (typeof e.data.requestHeader !== 'undefined') {
+                if ((typeof e.data.requestHeader === 'object') && Object.keys(e.data.requestHeader).length > 0) {
+                    for (header in e.data.requestHeader) {
+                        xhr.setRequestHeader(header, e.data.requestHeader[header]);
+                    }
+                }
+            }
+
             xhr.onload = function (result) {
+
+               var killWorker = (typeof e.data.kill === 'undefined') ? false : e.data.kill;
+
                 // do something to response
                 var response = {
+                    'kill': killWorker,
                     'status': result.srcElement.status,
                     'response': result.srcElement.responseText
                 };
@@ -71,7 +84,12 @@ XmlHttpRequestWorker.prototype = {
         }
     },
 
-    // Send something to the object
+    /**
+     * Send message to object
+     * Define if it is the last worker message or not
+     *
+     * @param msg
+     */
     send: function(msg) {
         if(this.worker) {
             this.worker.postMessage(msg);
