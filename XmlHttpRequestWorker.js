@@ -41,7 +41,7 @@ XmlHttpRequestWorker.prototype = {
 
             var xhr = new XMLHttpRequest();
             xhr.open(e.data.method, e.data.url, true);
-            xhr.setRequestHeader('Accept', 'application/json, text/javascript');
+            xhr.setRequestHeader('Accept', e.data.requestHeader);
             xhr.onload = function (result) {
                 // do something to response
                 var response = {
