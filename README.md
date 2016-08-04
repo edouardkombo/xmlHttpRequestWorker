@@ -40,9 +40,6 @@ Single request inside a single worker object
         //Terminate the connectio
         worker.kill();
     });
-    
-    //Terminate the connection
-    worker.kill();
 
     
 Multiple requests inside a single worker object
@@ -80,9 +77,6 @@ Multiple requests inside a single worker object
       //Terminate the connection once every call have been made
       //worker.kill();
     });
-    
-    //Terminate the connection
-    worker.kill();
     
     
 Single requests inside separate workers
