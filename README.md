@@ -13,7 +13,7 @@ Simple class that allows you to create dynamic webworkers for xmlHttpRequest pur
 
 Link the script inside your page
 
-    <script src="scripts/XmlHttpRequestWorker.js"></script>
+    <script src="scripts/XmlHttpRequestWorker.min.js"></script>
     
 Single request inside a single worker object
 
